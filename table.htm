@@ -1,0 +1,158 @@
+<html>
+   <head>
+      <title>Angular JS Table</title>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      
+      <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+   </head>
+   
+   <body>
+      <h2>ACDC Application</h2>
+      <div ng-app = "mainApp" ng-controller = "jsonController">
+         <p>Search: <input type="text" ng-model="searchKeyword"></p>
+         <table border = "0">
+             <tr>
+                        <th>Order id</th>
+                        <th>Product name</th>
+                        <th>Product code</th>
+                        <th>Product type</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                     <tr ng-repeat = "p in data.product |filter: searchKeyword| limitTo: 20: begin ">
+                        <td>{{ p.order_id }}</td>
+                        <td>{{ p.product_name}}</td>
+                        <td>{{ p.product_code }}</td>
+                   
+                        <td>{{ p.product_type }}</td>
+                        <td>{{ p.product_status}}</td>
+                        <td><button>Edit</button></td>
+                     </tr>
+           </table>
+           <p><button ng-click="next()" ng-disabled="disabled">Next page</button></p>
+       </div>
+      
+      <script>
+         var mainApp = angular.module("mainApp", []);
+         
+         mainApp.controller('jsonController', function($scope) {
+            $scope.begin=0;
+            $scope.disabled=false;
+            $scope.next=function(){
+            	$scope.begin=$scope.begin+20;
+            	if($scope.begin>$scope.data.product.length-20){
+            		$scope.disabled=true;
+
+            	}
+            	
+            	$scope.$apply();
+
+            }
+            $scope.data = {
+               
+               
+               product:[
+                  {order_id:1,product_name:'headphone',product_code:70,product_type:"Electronics",product_status:"dispatched"},
+                  {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                  {order_id:1,product_name:'headphone',product_code:70,product_type:"Electronics",product_status:"dispatched"},
+                  {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                  {order_id:1,product_name:'headphone',product_code:70,product_type:"Electronics",product_status:"dispatched"},
+                  {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                  {order_id:1,product_name:'headphone',product_code:70,product_type:"Electronics",product_status:"dispatched"},
+                  {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+                   {order_id:2,product_name:'earphone',product_code:80,product_type:"Electronics",product_status:"processing"},
+                  {order_id:3,product_name:'calculator',product_code:65,product_type:"Electronics",product_status:"out for delievery"},
+                  {order_id:4,product_name:'bottle',product_code:75,product_type:"accesorie",product_status:"delievered"},
+                  {order_id:5,product_name:'laptop',product_code:67,product_type:"Electronics",product_status:"delievered"},
+               ],
+               
+            };
+         });
+      </script>
+      
+   </body>
+</html>
